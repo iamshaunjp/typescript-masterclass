@@ -1,19 +1,23 @@
 "use strict";
-//--------------
-// type aliases
-//--------------
-function getRandomColor() {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
-    return [r, g, b];
+//-------------
+// union types
+//-------------
+let someId;
+someId = 1;
+someId = '2';
+let email = undefined;
+email = 'mario@netninja.dev';
+email = undefined;
+let anotherId;
+// anotherId = undefined
+anotherId = '1';
+anotherId = 2;
+//--------------------
+// union type pitfall
+//--------------------
+function swapIdType(id) {
+    // can only use props and methods common to
+    // both number and string types
+    // parseInt(id) --> not allowed
+    return id;
 }
-const colorOne = getRandomColor();
-const colorTwo = getRandomColor();
-console.log(colorOne, colorTwo);
-const userOne = { name: 'mario', score: 75 };
-function formatUser(user) {
-    console.log(`${user.name} has a score of ${user.score}.`);
-}
-formatUser(userOne);
-formatUser({ name: 'yoshi', score: 100 });
