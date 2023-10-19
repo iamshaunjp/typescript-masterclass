@@ -1,46 +1,67 @@
-//------------------------
-// basic type annotations
-//------------------------
+//--------
+// arrays
+//--------
 
-let age: number = 30
-let firstName: string = 'Mario'
-let isFictional: boolean
+let names: string[] = ['mario', 'luigi', 'peach']
+let ages: number[] = [25, 28, 24]
 
-// age = 'hello'
-age = 31
+// names.push(true)
+names.push('bowser')
 
-// firstName = 100
-firstName = 'Luigi'
+// ages.push('35')
+ages.push(30)
 
-// isFictional = 'false'
-isFictional = false
+let ids: (number | string)[] = [1, '2', 3]
 
-//----------------
-// type inference
-//----------------
+// ids.push(false)
+ids.push(4)
+ids.push('5')
 
-let planet = 'Earth'
-let moons = 1
-let isLarge = false
+//----------------------------
+// type inference with arrays
+//----------------------------
 
-// planet = 10
-planet = 'Saturn'
+let fruits = ['apples', 'pears', 'bananas', 'mangos']
 
-// moons = '145'
-moons = 145
+// fruits.push(20)
+fruits.push('peaches')
 
-// isLarge = 'yes'
-isLarge = true
+const f = fruits[3] // infers the type based on fruits type
 
-//------------------
-// null & undefined
-//------------------
+let things = [1, true, 'hello']
 
-let something: null
-let anotherThing: undefined
+const t = things[0] // can be any of the types initially added
 
-// something = 10
-something = null
+//-----------------
+// object literals
+//-----------------
 
-// anotherThing = 'hello, world'
-anotherThing = undefined
+let user: { firstName: string; age: number; id: number | string } = {
+	firstName: 'mario',
+	age: 30,
+	id: '1',
+	// isFictional: true
+}
+
+// user.name = 25
+// user.email = 'peach@netninja.dev'
+user.firstName = 'peach'
+user.id = 2
+
+// destructuring from objects
+const { age, id }: { age: number; id: number | string } = user
+
+//-------------------------------------
+// type inference with object literals
+//-------------------------------------
+
+let person = {
+	name: 'luigi',
+	score: 35,
+}
+
+// person.name = true
+// person.id = 3
+person.name = 'bowser'
+
+const score = person.score // infers number type
