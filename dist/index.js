@@ -1,26 +1,27 @@
 "use strict";
-//-----------
-// functions
-//-----------
-function addTwoNumbers(a, b) {
-    return a + b;
-}
-const subtractTwoNumbers = (a, b) => {
-    return a - b;
+//----------
+// any type
+//----------
+let age;
+let title;
+age = 30;
+age = false;
+title = 25;
+title = {
+    hello: 'world',
 };
-// addTwoNumbers('2', 5)
-addTwoNumbers(3, 9);
-subtractTwoNumbers(10, 7);
-function addAllNumbers(items) {
-    const total = items.reduce((a, c) => a + c, 0);
-    console.log(total);
+//--------------------
+// any type in arrays
+//--------------------
+let things = ['hello', true, 30, null];
+things.push({ id: 123 });
+//-----------------
+// functions & any
+//-----------------
+function addTogether(value) {
+    return value + value;
 }
-addAllNumbers([5, 7, 9, 11, 3, 2, 1]);
-//-----------------------
-// return type inference
-//-----------------------
-function formatGreeting(name, greeting) {
-    return `${greeting}, ${name}`;
-}
-// we get inference on return types, but not on argument types
-// type inference on return values does not enforce a return type
+const resultOne = addTogether('hello');
+const resultTwo = addTogether(3);
+// useful when migrating from js to ts
+// because using any won't cause errors initially
