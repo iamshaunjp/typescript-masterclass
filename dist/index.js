@@ -1,23 +1,25 @@
 "use strict";
 //-------------
-// union types
+// type guards
 //-------------
-let someId;
-someId = 1;
-someId = '2';
-let email = undefined;
-email = 'mario@netninja.dev';
-email = undefined;
-let anotherId;
-// anotherId = undefined
-anotherId = '1';
-anotherId = 2;
-//--------------------
-// union type pitfall
-//--------------------
 function swapIdType(id) {
-    // can only use props and methods common to
-    // both number and string types
-    // parseInt(id) --> not allowed
-    return id;
+    if (typeof id === 'string') {
+        // can use string methods and properties
+        return parseInt(id);
+    }
+    else {
+        // can use number methods and properties
+        return id.toString();
+    }
+}
+const idOne = swapIdType(1);
+const idTwo = swapIdType('2');
+console.log(idOne, idTwo);
+function logDetails(value) {
+    if (value.type === 'user') {
+        console.log(value.email, value.username);
+    }
+    if (value.type === 'person') {
+        console.log(value.firstname, value.age);
+    }
 }
