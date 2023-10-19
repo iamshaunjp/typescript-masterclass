@@ -1,38 +1,46 @@
-//--------
-// tuples
-//--------
+//------------
+// interfaces
+//------------
 
-let person: [string, number, boolean] = ['mario', 30, true]
-
-// person[0] = false
-person[0] = 'mario'
-
-//-----------------
-// tuples examples
-//-----------------
-
-let hsla: [number, string, string, number]
-hsla = [200, '100%', '50%', 1]
-
-let xy: [number, number]
-xy = [94.7, 20.1]
-
-function useCoords(): [number, number] {
-	// get coords of something
-
-	const lat = 100
-	const long = 50
-
-	return [lat, long]
+interface Author {
+	name: string
+	avatar: string
 }
 
-const [lat, long] = useCoords()
+const authorOne: Author = { name: 'mario', avatar: '/img/mario.png' }
 
-//--------------
-// named tuples
-//--------------
+interface Post {
+	title: string
+	body: string
+	tags: string[]
+	created_at: Date
+	author: Author
+}
 
-let user: [name: string, age: number]
+const newPost = {
+	title: 'my first post',
+	body: 'something interesting',
+	tags: ['gaming', 'tech'],
+	created_at: new Date(),
+	author: authorOne,
+}
 
-user = ['peach', 25]
-console.log(user[0])
+//----------------------------
+// as function argument types
+//----------------------------
+
+function createPost(post: Post): void {
+	console.log(`created post ${post.title} by ${post.author.name}`)
+}
+
+// createPost({ title: 'a new post title' })
+createPost(newPost)
+
+//-------------
+// with arrays
+//-------------
+
+let posts: Post[] = []
+
+// posts.push({ title: 'some title' })
+posts.push(newPost)
