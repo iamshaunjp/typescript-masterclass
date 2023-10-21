@@ -43,7 +43,7 @@ user.firstName = 'peach'
 user.id = 2
 
 // destructuring from objects
-const { age, id }: { age: number; id: number | string } = user
+const { age, id }: { age: number; id: number } = user
 
 //-------------------------------------
 // type inference with object literals
