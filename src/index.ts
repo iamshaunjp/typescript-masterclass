@@ -5,7 +5,7 @@
 let person: [string, number, boolean] = ['mario', 30, true]
 
 // person[0] = false
-person[0] = 'mario'
+person[0] = 'luigi'
 
 //-----------------
 // tuples examples
