@@ -7,10 +7,10 @@ let someId: number | string
 someId = 1
 someId = '2'
 
-let email: string | undefined = undefined
+let email: string | null = null
 
 email = 'mario@netninja.dev'
-email = undefined
+email = null
 
 type Id = number | string
 let anotherId: Id
