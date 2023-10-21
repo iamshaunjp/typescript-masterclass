@@ -11,12 +11,6 @@ names.push('bowser')
 // ages.push('35')
 ages.push(30)
 
-let ids: (number | string)[] = [1, '2', 3]
-
-// ids.push(false)
-ids.push(4)
-ids.push('5')
-
 //----------------------------
 // type inference with arrays
 //----------------------------
@@ -36,10 +30,10 @@ const t = things[0] // can be any of the types initially added
 // object literals
 //-----------------
 
-let user: { firstName: string; age: number; id: number | string } = {
+let user: { firstName: string; age: number; id: number } = {
 	firstName: 'mario',
 	age: 30,
-	id: '1',
+	id: 1,
 	// isFictional: true
 }
 
