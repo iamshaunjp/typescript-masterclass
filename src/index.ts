@@ -1,39 +1,49 @@
-//--------------------
-// reusable interfaces
-//--------------------
+//---------------------
+// function signatures
+//---------------------
 
-interface hasQuantity {
-	quantity: number
+type Calculator = (numOne: number, numTwo: number) => number
+
+function addTwoNumbers(a: number, b: number) {
+	return a + b
+}
+function multiplyTwoNumbers(first: number, second: number) {
+	return first * second
+}
+function squareNumber(num: number) {
+	return num * num
+}
+function joinTwoNumbers(numOne: number, numTwo: number) {
+	return `${numOne}${numTwo}`
 }
 
-// not allowed
-// const something: hasQuantity = { title: 'hello', quantity: 50 }
+let calcs: Calculator[] = []
 
-// allowed
-// const something: hasQuantity = { quantity: 50 }
+calcs.push(addTwoNumbers)
+calcs.push(multiplyTwoNumbers)
+calcs.push(squareNumber)
+// calcs.push(joinTwoNumbers) --> not allowed, returns a string
 
-function printQuantity(item: hasQuantity): void {
-	// can only access known properties - quantity
-	console.log(`the quantity of this item is ${item.quantity}`)
+//-----------------------------------
+// function signatures on interfaces
+//-----------------------------------
+
+interface HasArea {
+	name: string
+	// calcArea: (a: number) => number
+	calcArea(a: number): number
 }
 
-const fruit = {
-	name: 'mango',
-	quantity: 50,
-}
-const vehicle = {
-	type: 'car',
-	quantity: 3,
-}
-const person = {
-	name: 'mario',
-	age: 30,
+const shapeOne: HasArea = {
+	name: 'square',
+	calcArea(l: number) {
+		return l * l
+	},
 }
 
-printQuantity(fruit)
-printQuantity(vehicle)
-// printQuantity(person) --> not allowed
-
-// passing object literals directly has to
-// include only known interface properties
-// printQuantity({ quantity: 50, title: 'something' })
+const shapeTwo: HasArea = {
+	name: 'circle',
+	calcArea(r: number) {
+		return (Math.PI * r) ^ 2
+	},
+}
