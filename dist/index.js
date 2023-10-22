@@ -1,25 +1,30 @@
 "use strict";
-//-------------
-// type guards
-//-------------
-function swapIdType(id) {
-    if (typeof id === 'string') {
-        // can use string methods and properties
-        return parseInt(id);
-    }
-    else {
-        // can use number methods and properties
-        return id.toString();
-    }
+//----------------------
+// extending interfaces
+//----------------------
+const user = {
+    id: 1,
+    format() {
+        return `This user has an id of ${this.id}`;
+    },
+};
+const bill = {
+    id: 2,
+    amount: 50,
+    server: 'mario',
+    format() {
+        return `Bill with id ${this.id} has £${this.amount} to pay`;
+    },
+};
+function printFormatted(val) {
+    console.log(val.format());
 }
-const idOne = swapIdType(1);
-const idTwo = swapIdType('2');
-console.log(idOne, idTwo);
-function logDetails(value) {
-    if (value.type === 'user') {
-        console.log(value.email, value.username);
-    }
-    if (value.type === 'person') {
-        console.log(value.firstname, value.age);
-    }
+function printBill(bill) {
+    console.log('server:', bill.server);
+    console.log(bill.format());
 }
+// testing the functions
+printFormatted(user);
+printFormatted(bill);
+// printBill(user) --> not allowed
+printBill(bill);
