@@ -1,17 +1,14 @@
-//-------------
-// classes 101
-//-------------
+//------------------
+// access modifiers
+//------------------
 
 type Base = 'classic' | 'thick' | 'thin' | 'garlic'
 
 class Pizza {
-	constructor(title: string, price: number) {
-		this.title = title
-		this.price = price
-	}
+	constructor(private title: string, private price: number) {}
 
-	title: string
-	price: number
+	// title: string
+	// price: number
 	base: Base = 'classic'
 	toppings: string[] = []
 
@@ -33,3 +30,4 @@ pizza.addTopping('mushrooms')
 pizza.addTopping('olives')
 
 console.log(pizza)
+// console.log(pizza.title, pizza.price, pizza.toppings)

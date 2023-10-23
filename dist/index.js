@@ -1,13 +1,15 @@
 "use strict";
-//-------------
-// classes 101
-//-------------
+//------------------
+// access modifiers
+//------------------
 class Pizza {
     constructor(title, price) {
-        this.base = 'classic';
-        this.toppings = [];
         this.title = title;
         this.price = price;
+        // title: string
+        // price: number
+        this.base = 'classic';
+        this.toppings = [];
     }
     addTopping(topping) {
         this.toppings.push(topping);
@@ -24,3 +26,4 @@ pizza.selectBase('garlic');
 pizza.addTopping('mushrooms');
 pizza.addTopping('olives');
 console.log(pizza);
+// console.log(pizza.title, pizza.price, pizza.toppings)
