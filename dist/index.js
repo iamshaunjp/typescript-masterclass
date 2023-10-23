@@ -1,7 +1,4 @@
 "use strict";
-//------------------
-// access modifiers
-//------------------
 class Pizza {
     constructor(title, price) {
         this.title = title;
@@ -21,9 +18,14 @@ class Pizza {
         this.base = b;
     }
 }
-const pizza = new Pizza('mario special', 15);
-pizza.selectBase('garlic');
-pizza.addTopping('mushrooms');
-pizza.addTopping('olives');
-console.log(pizza);
-// console.log(pizza.title, pizza.price, pizza.toppings)
+// explicit
+const pizzaOne = new Pizza('mario special', 15);
+// inferred
+const pizzaTwo = new Pizza('luigi special', 10);
+function addMushroomsToPizzas(pizzas) {
+    for (const p of pizzas) {
+        p.addTopping('mushrooms');
+    }
+}
+addMushroomsToPizzas([pizzaOne, pizzaTwo]);
+console.log(pizzaOne, pizzaTwo);

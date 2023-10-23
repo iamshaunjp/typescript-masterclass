@@ -1,7 +1,3 @@
-//------------------
-// access modifiers
-//------------------
-
 type Base = 'classic' | 'thick' | 'thin' | 'garlic'
 
 class Pizza {
@@ -9,8 +5,8 @@ class Pizza {
 
 	// title: string
 	// price: number
-	base: Base = 'classic'
-	toppings: string[] = []
+	private base: Base = 'classic'
+	private toppings: string[] = []
 
 	addTopping(topping: string): void {
 		this.toppings.push(topping)
@@ -23,11 +19,18 @@ class Pizza {
 	}
 }
 
-const pizza = new Pizza('mario special', 15)
+// explicit
+const pizzaOne: Pizza = new Pizza('mario special', 15)
 
-pizza.selectBase('garlic')
-pizza.addTopping('mushrooms')
-pizza.addTopping('olives')
+// inferred
+const pizzaTwo = new Pizza('luigi special', 10)
 
-console.log(pizza)
-// console.log(pizza.title, pizza.price, pizza.toppings)
+function addMushroomsToPizzas(pizzas: Pizza[]): void {
+	for (const p of pizzas) {
+		p.addTopping('mushrooms')
+	}
+}
+
+addMushroomsToPizzas([pizzaOne, pizzaTwo])
+
+console.log(pizzaOne, pizzaTwo)
