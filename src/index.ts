@@ -1,10 +1,18 @@
 type Base = 'classic' | 'thick' | 'thin' | 'garlic'
 
-class Pizza {
+class MenuItem {
 	constructor(private title: string, private price: number) {}
 
-	// title: string
-	// price: number
+	get details(): string {
+		return `${this.title} - £${this.price}`
+	}
+}
+
+class Pizza extends MenuItem {
+	constructor(title: string, price: number) {
+		super(title, price)
+	}
+
 	private base: Base = 'classic'
 	private toppings: string[] = []
 
@@ -19,18 +27,10 @@ class Pizza {
 	}
 }
 
-// explicit
-const pizzaOne: Pizza = new Pizza('mario special', 15)
+const pizza = new Pizza('mario special', 15)
 
-// inferred
-const pizzaTwo = new Pizza('luigi special', 10)
-
-function addMushroomsToPizzas(pizzas: Pizza[]): void {
-	for (const p of pizzas) {
-		p.addTopping('mushrooms')
-	}
+function printMenuItem(item: MenuItem): void {
+	console.log(item.details)
 }
 
-addMushroomsToPizzas([pizzaOne, pizzaTwo])
-
-console.log(pizzaOne, pizzaTwo)
+printMenuItem(pizza)
