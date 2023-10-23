@@ -9,8 +9,8 @@ class Pizza {
 
 	// title: string
 	// price: number
-	base: Base = 'classic'
-	toppings: string[] = []
+	private base: Base = 'classic'
+	private toppings: string[] = []
 
 	addTopping(topping: string): void {
 		this.toppings.push(topping)
