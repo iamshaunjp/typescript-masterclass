@@ -1,50 +1,23 @@
 "use strict";
-class MenuItem {
-    constructor(title, price) {
-        this.title = title;
-        this.price = price;
+//--------------------
+// CSV Writer Project
+//--------------------
+class CSVWriter {
+    constructor(columns) {
+        this.columns = columns;
+        this.csv = this.columns.join(',') + '\n';
     }
-    get details() {
-        return `${this.title} - £${this.price}`;
+    addRows(values) {
+        let rows = values.map((v) => this.formatRow(v));
+        this.csv += rows.join('\n');
+        console.log(this.csv);
     }
-}
-class Pizza extends MenuItem {
-    constructor(title, price) {
-        super(title, price);
-        this.base = 'classic';
-        this.toppings = [];
-    }
-    addTopping(topping) {
-        this.toppings.push(topping);
-    }
-    removeTopping(topping) {
-        this.toppings = this.toppings.filter((t) => t !== topping);
-    }
-    selectBase(b) {
-        this.base = b;
-    }
-    format() {
-        let formatted = this.details + '\n';
-        // base
-        formatted += `Pizza on a ${this.base} base `;
-        // toppings
-        if (this.toppings.length < 1) {
-            formatted += 'with no toppings.';
-        }
-        if (this.toppings.length > 0) {
-            formatted += `with: ${this.toppings.join(', ')}`;
-        }
-        return formatted;
+    formatRow(p) {
+        return this.columns.map((col) => p[col]).join(',');
     }
 }
-const pizza = new Pizza('mario special', 15);
-// select base
-pizza.selectBase('garlic');
-// add items
-pizza.addTopping('mushrooms');
-pizza.addTopping('peppers');
-pizza.addTopping('olives');
-function printFormatted(val) {
-    console.log(val.format());
-}
-printFormatted(pizza);
+const writer = new CSVWriter(['id', 'amount', 'to', 'notes']);
+writer.addRows([
+    { id: 1, amount: 50, to: 'yoshi', notes: 'for design work' },
+    { id: 2, amount: 50, to: 'yoshi', notes: 'for design work' },
+]);

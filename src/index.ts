@@ -1,66 +1,39 @@
-type Base = 'classic' | 'thick' | 'thin' | 'garlic'
+//--------------------
+// CSV Writer Project
+//--------------------
 
-interface hasFormatter {
-	format(): string
+interface Payment {
+	id: number
+	amount: number
+	to: string
+	notes: string
 }
 
-abstract class MenuItem implements hasFormatter {
-	constructor(private title: string, private price: number) {}
+type PaymentColumns = ('id' | 'amount' | 'to' | 'notes')[]
 
-	get details(): string {
-		return `${this.title} - £${this.price}`
+class CSVWriter {
+	constructor(private columns: PaymentColumns) {
+		this.csv = this.columns.join(',') + '\n'
 	}
 
-	abstract format(): string
-}
+	private csv: string
 
-class Pizza extends MenuItem {
-	constructor(title: string, price: number) {
-		super(title, price)
+	addRows(values: Payment[]): void {
+		let rows = values.map((v) => this.formatRow(v))
+
+		this.csv += rows.join('\n')
+
+		console.log(this.csv)
 	}
 
-	private base: Base = 'classic'
-	private toppings: string[] = []
-
-	addTopping(topping: string): void {
-		this.toppings.push(topping)
-	}
-	removeTopping(topping: string): void {
-		this.toppings = this.toppings.filter((t) => t !== topping)
-	}
-	selectBase(b: Base): void {
-		this.base = b
-	}
-	format(): string {
-		let formatted = this.details + '\n'
-
-		// base
-		formatted += `Pizza on a ${this.base} base `
-
-		// toppings
-		if (this.toppings.length < 1) {
-			formatted += 'with no toppings.'
-		}
-		if (this.toppings.length > 0) {
-			formatted += `with: ${this.toppings.join(', ')}`
-		}
-
-		return formatted
+	private formatRow(p: Payment): string {
+		return this.columns.map((col) => p[col]).join(',')
 	}
 }
 
-const pizza = new Pizza('mario special', 15)
+const writer = new CSVWriter(['id', 'amount', 'to', 'notes'])
 
-// select base
-pizza.selectBase('garlic')
-
-// add items
-pizza.addTopping('mushrooms')
-pizza.addTopping('peppers')
-pizza.addTopping('olives')
-
-function printFormatted(val: hasFormatter): void {
-	console.log(val.format())
-}
-
-printFormatted(pizza)
+writer.addRows([
+	{ id: 1, amount: 50, to: 'yoshi', notes: 'for design work' },
+	{ id: 2, amount: 50, to: 'yoshi', notes: 'for design work' },
+])
