@@ -1,50 +1,47 @@
-//--------------------
-// CSV Writer Project
-//--------------------
+//--------------
+// Generics 101
+//--------------
 
-import { appendFileSync } from 'fs'
-
-interface Payment {
-	id: number
-	amount: number
-	to: string
-	notes: string
+function logAndReturnString(val: string): string {
+	console.log(val)
+	return val
+}
+function logAndReturnNumber(val: number): number {
+	console.log(val)
+	return val
+}
+function logAndReturnBoolean(val: boolean): boolean {
+	console.log(val)
+	return val
 }
 
-type PaymentColumns = ('id' | 'amount' | 'to' | 'notes')[]
-
-class CSVWriter {
-	constructor(private columns: PaymentColumns) {
-		this.csv = this.columns.join(',') + '\n'
-	}
-
-	private csv: string
-
-	save(filename: string): void {
-		appendFileSync(filename, this.csv)
-		this.csv = '\n'
-
-		console.log('file saved to', filename)
-	}
-
-	addRows(values: Payment[]): void {
-		let rows = values.map((v) => this.formatRow(v))
-
-		this.csv += rows.join('\n')
-
-		console.log(this.csv)
-	}
-
-	private formatRow(p: Payment): string {
-		return this.columns.map((col) => p[col]).join(',')
-	}
+function logAndReturnValue<T>(val: T): T {
+	console.log(val)
+	return val
 }
 
-const writer = new CSVWriter(['id', 'amount', 'to', 'notes'])
+const resultOne = logAndReturnValue<string>('mario')
+const resultTwo = logAndReturnValue<number>(25)
 
-writer.addRows([
-	{ id: 1, amount: 50, to: 'yoshi', notes: 'for design work' },
-	{ id: 2, amount: 50, to: 'mario', notes: 'for design work' },
-])
+// example 2
 
-writer.save('./data/payments.csv')
+function getRandomArrayValue<T>(values: T[]): T {
+	const i = Math.floor(Math.random() * values.length)
+
+	return values[i]
+}
+
+interface User {
+	name: string
+	score: number
+}
+
+const users: User[] = [
+	{ name: 'mario', score: 100 },
+	{ name: 'peach', score: 150 },
+	{ name: 'wario', score: 75 },
+	{ name: 'yoshi', score: 90 },
+]
+
+const randomUser = getRandomArrayValue<User>(users)
+console.log(randomUser.name)
