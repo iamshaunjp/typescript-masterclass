@@ -1,47 +1,32 @@
-//--------------
-// Generics 101
-//--------------
+//-------------------
+// Intersection Type
+//-------------------
 
-function logAndReturnString(val: string): string {
-	console.log(val)
-	return val
-}
-function logAndReturnNumber(val: number): number {
-	console.log(val)
-	return val
-}
-function logAndReturnBoolean(val: boolean): boolean {
-	console.log(val)
-	return val
+type Person = {
+	firstName: string
+	id: number
 }
 
-function logAndReturnValue<T>(val: T): T {
-	console.log(val)
-	return val
+type User = Person & {
+	email: string
 }
 
-const resultOne = logAndReturnValue<string>('mario')
-const resultTwo = logAndReturnValue<number>(25)
+// example with generic function
 
-// example 2
+function addIdToValue<T>(val: T): T & HasID {
+	const id = Math.random()
 
-function getRandomArrayValue<T>(values: T[]): T {
-	const i = Math.floor(Math.random() * values.length)
-
-	return values[i]
+	return { ...val, id }
 }
 
-interface User {
-	name: string
-	score: number
+interface Post {
+	title: string
+	thumbsUp: number
 }
 
-const users: User[] = [
-	{ name: 'mario', score: 100 },
-	{ name: 'peach', score: 150 },
-	{ name: 'wario', score: 75 },
-	{ name: 'yoshi', score: 90 },
-]
+interface HasID {
+	id: number
+}
 
-const randomUser = getRandomArrayValue<User>(users)
-console.log(randomUser.name)
+const post = addIdToValue<Post>({ title: 'Marmite Rules', thumbsUp: 250 })
+console.log(post.id, post.title, post.thumbsUp)
