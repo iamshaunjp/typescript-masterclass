@@ -1,11 +1,19 @@
 "use strict";
 //-------------------
-// Intersection Type
+// Generic Interface
 //-------------------
-// example with generic function
-function addIdToValue(val) {
-    const id = Math.random();
-    return Object.assign(Object.assign({}, val), { id });
+const collectionOne = {
+    data: ['mario', 'luigi', 'peach'],
+    name: 'mario characters',
+};
+const collectionTwo = {
+    data: [10, 15, 27, 3, 9, 34],
+    name: 'winning lottery numbers',
+};
+function randomCollectionItem(c) {
+    const i = Math.floor(Math.random() * c.data.length);
+    return c.data[i];
 }
-const post = addIdToValue({ title: 'Marmite Rules', thumbsUp: 250 });
-console.log(post.id, post.title, post.thumbsUp);
+const resultOne = randomCollectionItem(collectionOne);
+const resultTwo = randomCollectionItem(collectionTwo);
+console.log(resultOne, resultTwo);

@@ -1,32 +1,28 @@
 //-------------------
-// Intersection Type
+// Generic Interface
 //-------------------
 
-type Person = {
-	firstName: string
-	id: number
+interface Collection<T> {
+	data: T[]
+	name: string
 }
 
-type User = Person & {
-	email: string
+const collectionOne: Collection<string> = {
+	data: ['mario', 'luigi', 'peach'],
+	name: 'mario characters',
+}
+const collectionTwo: Collection<number> = {
+	data: [10, 15, 27, 3, 9, 34],
+	name: 'winning lottery numbers',
 }
 
-// example with generic function
+function randomCollectionItem<T>(c: Collection<T>): T {
+	const i = Math.floor(Math.random() * c.data.length)
 
-function addIdToValue<T>(val: T): T & HasID {
-	const id = Math.random()
-
-	return { ...val, id }
+	return c.data[i]
 }
 
-interface Post {
-	title: string
-	thumbsUp: number
-}
+const resultOne = randomCollectionItem<string>(collectionOne)
+const resultTwo = randomCollectionItem(collectionTwo)
 
-interface HasID {
-	id: number
-}
-
-const post = addIdToValue<Post>({ title: 'Marmite Rules', thumbsUp: 250 })
-console.log(post.id, post.title, post.thumbsUp)
+console.log(resultOne, resultTwo)
