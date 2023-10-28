@@ -1,0 +1,25 @@
+{
+	"pizzas": [
+		{
+			"title": "Mario Special",
+			"description": "An extra cheesy pizza on a thin and crispy base, loaded with olives and mushrooms.",
+			"toppings": ["mushrooms", "olives"],
+			"price": 12,
+			"id": 1
+		},
+		{
+			"title": "Luigi Special",
+			"description": "Peppers and mushrooms on a Luigi-special garlic base, with bbq sauce instead of the usual tomato.",
+			"toppings": ["mushrooms", "peppers"],
+			"price": 10,
+			"id": 2
+		},
+		{
+			"title": "Peach's Hawaiian",
+			"description": "A fruity combination of pineapply, sweetorn and mushrooms on a light, thin base.",
+			"toppings": ["pineapple"],
+			"price": 15,
+			"id": 3
+		}
+	]
+}
