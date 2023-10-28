@@ -1,0 +1,63 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="styles.css" />
+		<title>Create New Menu Item</title>
+	</head>
+	<body>
+		<nav>
+			<h1>Create New Pizza</h1>
+			<a href="/" class="btn">Back to Menu</a>
+		</nav>
+
+		<main class="wrap">
+			<form class="create">
+				<!-- pizza title -->
+				<label for="title">
+					<span>Title:</span>
+					<input type="text" name="title" required />
+				</label>
+
+				<!-- pizza description -->
+				<label for="description">
+					<span>Description:</span>
+					<textarea name="description" required></textarea>
+				</label>
+
+				<!-- pizza toppings -->
+				<fieldset>
+					<legend>Choose toppings:</legend>
+					<label>
+						<input type="checkbox" name="toppings" value="mushrooms" />
+						<span>mushrooms</span>
+					</label>
+					<label>
+						<input type="checkbox" name="toppings" value="peppers" />
+						<span>peppers</span>
+					</label>
+					<label>
+						<input type="checkbox" name="toppings" value="sweetcorn" />
+						<span>sweetcorn</span>
+					</label>
+					<label>
+						<input type="checkbox" name="toppings" value="olives" />
+						<span>olives</span>
+					</label>
+					<label>
+						<input type="checkbox" name="toppings" value="pineapple" />
+						<span>pineapple</span>
+					</label>
+				</fieldset>
+
+				<!-- pizza price -->
+				<label for="price">
+					<span>Price:</span>
+					<input type="number" name="price" required />
+				</label>
+
+				<button>Create!</button>
+			</form>
+		</main>
+	</body>
+</html>
