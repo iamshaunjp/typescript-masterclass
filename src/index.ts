@@ -1,42 +1,41 @@
-//--------------------
-// sets in typescript
-//--------------------
+//-----------
+// enums 101
+//-----------
 
-const names = new Set<string>()
-
-names.add('mario')
-names.add('luigi')
-names.add('peach')
-names.add('mario') // --> duplicate, won't add it
-
-console.log(names)
-
-//------------------------
-// sets with custom types
-//------------------------
-
-interface User {
-	email: string
-	score: number
+enum Priority {
+	Lowest = 0,
+	Low = 1,
+	Medium = 2,
+	High = 3,
+	Urgent = 4,
 }
 
-const user1: User = { email: 'mario@netninja.dev', score: 10 }
-const user2: User = { email: 'peach@netninja.dev', score: 15 }
+// function addTicket(details: string, priority: number) {
+// 	if (priority === 0) {
+// 	}
+// 	if (priority === 1) {
+// 	}
+// 	if (priority === 2) {
+// 	}
+// 	if (priority === 3) {
+// 	}
+// 	if (priority === 4) {
+// 	}
+// }
 
-const users = new Set<User>()
+// addTicket('fix my computer', 3)
 
-users.add(user1)
-users.add(user2)
-users.add(user1) // duplicate of user1 --> won't add
-
-console.log(users)
-
-//----------------------------
-// sets as function arguments
-//----------------------------
-
-function logUserEmails(users: Set<User>): void {
-	users.forEach((user) => console.log(user.email))
+function addTicket(details: string, priority: Priority) {
+	if (priority === 0) {
+	}
+	if (priority === 1) {
+	}
+	if (priority === 2) {
+	}
+	if (priority === 3) {
+	}
+	if (priority === 4) {
+	}
 }
 
-logUserEmails(users)
+addTicket('fix my computer', Priority.Medium)
